@@ -328,6 +328,7 @@
       "Flags": 0,
       "Name": "Player",
       "Position": "33.54564,-16.38097,3.628437",
+      "Tags": "player",
       "Enabled": true,
       "Components": [
         {
@@ -991,8 +992,8 @@
         {
           "__guid": "68d4549b-02ae-4101-8a4b-9547d304b652",
           "Flags": 0,
-          "Name": "Text",
-          "Position": "792.7137,-77.12109,69.77918",
+          "Name": "Controls",
+          "Position": "792,-77.12109,69.77918",
           "Rotation": "0,0,0.9999999,0.0000001490116",
           "Enabled": true,
           "Components": [
@@ -1011,6 +1012,49 @@
               "__guid": "4cf8ed60-b73f-422d-9a8d-940fecbf6995"
             }
           ]
+        },
+        {
+          "__guid": "2352983b-f26c-4f78-9206-4462f5e2b765",
+          "Flags": 0,
+          "Name": "Text",
+          "Position": "709.0446,-669.7,73.09589",
+          "Rotation": "0,0,1,0.0000001947072",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Sandbox.TextRenderer",
+              "__guid": "6c3400d5-d296-4468-bfaa-49adfaad2e72",
+              "Color": "0.40742,0.51628,0.10806,1",
+              "FontFamily": "Poppins",
+              "FontSize": 24,
+              "FontWeight": 800,
+              "Scale": 0.3,
+              "Text": "New Map \u0026 Actual Game Mechanics\nComing Soon?\n",
+              "TextAlignment": "Center"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "__guid": "5933bf3f-9c41-40c6-be20-b7b2346061ee",
+      "Flags": 0,
+      "Name": "Teleport Barrier",
+      "Position": "0,0,-156.7849",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.PlaneCollider",
+          "__guid": "32eeb114-38d3-4be5-8605-a044d2f83d80",
+          "Center": "0,0,0",
+          "IsTrigger": true,
+          "Scale": "5000,5000",
+          "Static": true
+        },
+        {
+          "__type": "Teleporter",
+          "__guid": "96e42380-5ad9-427e-b19c-b2e507f442e3",
+          "TeleportLocation": "33.54564,-16.38097,3.628437"
         }
       ]
     }
