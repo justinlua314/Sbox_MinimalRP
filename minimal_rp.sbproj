@@ -1,10 +1,10 @@
 {
   "Title": "Minimal RP",
   "Type": "game",
-  "Org": "local",
+  "Org": "opportunity",
   "Ident": "minimal_rp",
   "Schema": 1,
-  "IncludeSourceFiles": false,
+  "IncludeSourceFiles": true,
   "Resources": null,
   "PackageReferences": [],
   "EditorReferences": null,
@@ -21,7 +21,7 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "CsProjName": "",
-    "StartupScene": "scenes/minimal.scene",
+    "StartupScene": "scenes/playing.scene",
     "ControlModes": {
       "Keyboard": true
     },
@@ -221,6 +221,7 @@
         }
       ],
       "__guid": "e9fc6773-d2bc-4772-840c-a1d411ec9f64"
-    }
+    },
+    "LaunchMode": "Normal"
   }
 }
