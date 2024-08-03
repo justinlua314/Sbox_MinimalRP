@@ -10,7 +10,12 @@
       "IncludeSourceFiles": false,
       "Resources": null,
       "PackageReferences": [],
-      "EditorReferences": [],
+      "EditorReferences": [
+        "sugmatextures.artificialgrass#34959",
+        "rustextended.sidewalk_b#43372",
+        "apetavern.grass_01a#46402",
+        "wujekfoliarz.brick_wall_2#32938"
+      ],
       "Metadata": {
         "SingleAssetSource": "maps/rp_minimal.vmap"
       }
