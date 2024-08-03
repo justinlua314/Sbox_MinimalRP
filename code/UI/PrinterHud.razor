@@ -1,0 +1,21 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+	<div class="money-label">Money</div>
+	<div class="money-amount">$@Money</div>
+</root>
+
+@code {
+	public int Money = 0;
+	Rotation DefaultRotation;
+
+	public void ResetRotation() { GameObject.Transform.Rotation = DefaultRotation; }
+
+	protected override void OnStart() {
+		DefaultRotation = GameObject.Transform.Rotation;
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine( Money );
+}

@@ -1,0 +1,128 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using System;
+@inherits PanelComponent
+
+<root>
+	<div class="shop-background">
+		<div class="listing-row">
+			@foreach (MoneyPrinter printer in Printers) {
+				<div class="printer-listing" style="background-color: @printer.TextColor;">
+					<h2>@printer.Name</h2>
+					<p>Speed: @printer.DisplaySpeed()</p>
+
+					<p>Price: $@printer.Price</p>
+					<button class="buy-button" @onclick=@(() => BuyPrinter(printer))>Buy</button>
+				</div>
+			}
+		</div>
+
+		<div class="listing-row">
+			<div class="printer-listing" style="background-color: #3c6616">
+				<h2>Weed Pot</h2>
+				<p>Insert seed to grow weed</p>
+
+				<p>Price: $250</p>
+				<button class="buy-button" onclick=@BuyWeedPot>Buy</button>
+			</div>
+
+			<div class="printer-listing" style="background-color: #a5e36d">
+				<h2>Weed Seed</h2>
+				<p>Can be planted in Weed Pot</p>
+
+				<p>Price: $50</p>
+				<button class="buy-button" onclick=@BuyWeedSeed>Buy</button>
+			</div>
+		</div>
+	</div>
+</root>
+
+@code {
+	[Property] PlayerWallet Wallet { get; set; }
+	[Property] GameObject Entities { get; set; }
+	[Property] GameObject MasterPrinter { get; set; }
+	[Property] GameObject MasterPot { get; set; }
+	[Property] GameObject MasterSeed { get; set; }
+
+	Random rnd = new();
+
+	Transform RandomLocalPosition() {
+		if (Wallet == null) { return new Transform(); }
+
+		GameObject player = Wallet.GameObject.Parent;
+		Vector3 targetPosition = player.Transform.LocalPosition;
+
+		targetPosition += Vector3.Up * 50f;
+		targetPosition += Vector3.Left * rnd.Next(-100, 100);
+		targetPosition += Vector3.Forward * rnd.Next(-100, 100);
+
+		Transform targetTransform = new(targetPosition);
+		return targetTransform;
+	}
+
+	void PurchaseItem(GameObject masterEnt, int cost) {
+		if (Entities == null || Wallet == null || masterEnt == null) { return; }
+
+		if (Wallet.Money >= cost) {
+			Wallet.Money -= cost;
+			masterEnt.Clone(RandomLocalPosition(), Entities);
+		}
+	}
+
+	void BuyWeedPot() {
+		PurchaseItem(MasterPot, 250);
+	}
+
+	void BuyWeedSeed() {
+		PurchaseItem(MasterSeed, 50);
+	}
+
+	public class MoneyPrinter {
+		public string Name { get; set; }
+		public int Price { get; set; }
+		public int Speed { get; set; }
+		public string TextColor { get; set; }
+		public Color PrinterColor { get; set; }
+
+		public int DisplaySpeed() { return 11 - Speed; }
+	}
+
+	public List<MoneyPrinter> Printers { get; set; } = new() {
+		new MoneyPrinter {
+			Name = "Bronze Printer", Price = 100, Speed = 5, TextColor = "#7d4d1d",
+			PrinterColor = new Color(0.49f, 0.302f, 0.114f)
+		},
+		new MoneyPrinter {
+			Name = "Silver Printer", Price = 250, Speed = 3, TextColor = "#dfe7e8",
+			PrinterColor = new Color(0.875f, 0.906f, 0.91f)
+		},
+		new MoneyPrinter {
+			Name = "Gold Printer", Price = 500, Speed = 2, TextColor = "#e3e03d",
+			PrinterColor = new Color(0.89f, 0.878f, 0.239f)
+		},
+		new MoneyPrinter {
+			Name = "Diamond Printer", Price = 1000, Speed = 1, TextColor = "#70dae6",
+			PrinterColor = new Color(0.439f, 0.855f, 0.902f)
+		}
+	};
+
+	protected override int BuildHash() => System.HashCode.Combine( "" );
+
+	void BuyPrinter(MoneyPrinter printer) {
+		if (Wallet == null || Entities == null) { return; }
+
+		float money = Wallet.Money;
+		PurchaseItem(MasterPrinter, printer.Price);
+
+		if (money != Wallet.Money) {
+			GameObject new_printer = Entities.Children.Last();
+			PrinterScript script = new_printer.Components.Get<PrinterScript>();
+
+			if (script != null) {
+				script.SetColor(printer.PrinterColor);
+				script.SetSpeed(printer.Speed);
+				script.ResetPrinter();
+			}
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "weed_pack",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "weed_pack",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "Metadata": {
+        "SingleAssetSource": "models/raw/weed_pack.vmap"
+      }
+    }
+  }
+}

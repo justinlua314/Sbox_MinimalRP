@@ -1,0 +1,23 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "weed_0",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "weed_0",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [
+        "apetavern.grass_01a#46402",
+        "matek.dev_wall_orange#46469",
+        "rustextended.plowed_soil#43348"
+      ],
+      "Metadata": {
+        "SingleAssetSource": "models/raw/weed_0.vmap"
+      }
+    }
+  }
+}

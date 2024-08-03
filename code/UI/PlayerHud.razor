@@ -1,0 +1,50 @@
+@using Sandbox;
+@using Sandbox.UI;
+@using System;
+@inherits PanelComponent
+
+<root>
+	<div class="money">$@Wallet.Money</div>
+	<div class="intox-label">Intoxication</div>
+	<div class="intox-bar">
+		<div class="intox-fill" style="width:@(IntoxLevel)%"></div>
+	</div>
+</root>
+
+@code {
+	[Property] PlayerWallet Wallet = new();
+
+	[Property] float IntoxDecay { get; set; } = 2f;
+
+	public int IntoxLevel { get; set; } = 0;
+
+	float IntoxTimer = 0f;
+	float IntoxMoneyTimer = 0f;
+
+	public void Dose() {
+		IntoxLevel = Math.Min(IntoxLevel + 10, 100);
+	}
+
+	protected override void OnFixedUpdate() {
+		IntoxTimer += Time.Delta;
+
+		if (IntoxTimer >= IntoxDecay) {
+			IntoxTimer -= IntoxDecay;
+
+			IntoxLevel = Math.Max(IntoxLevel - 1, 0);
+		}
+
+		if (IntoxLevel > 0) {
+			IntoxMoneyTimer += Time.Delta * 10;
+
+			if (IntoxMoneyTimer > 100 - IntoxLevel) {
+				IntoxMoneyTimer -= (100 - IntoxLevel);
+				Wallet.Money += 10;
+			}
+		}
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine(
+	Wallet.Money + IntoxLevel
+	);
+}

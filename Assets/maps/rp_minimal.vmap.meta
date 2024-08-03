@@ -1,0 +1,19 @@
+{
+  "publish": {
+    "Enabled": false,
+    "ProjectConfig": {
+      "Title": "rp_minimal",
+      "Type": "map",
+      "Org": "local",
+      "Ident": "rp_minimal",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": [],
+      "Metadata": {
+        "SingleAssetSource": "maps/rp_minimal.vmap"
+      }
+    }
+  }
+}
