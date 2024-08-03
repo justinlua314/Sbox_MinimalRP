@@ -9,11 +9,13 @@ PlayerHud {
 
 	.money {
 		position: absolute;
-		top: 10px;
+		bottom: 40px;
 		right: 20px;
 		font-family: Poppins;
 		font-size: 48px;
 		color: darkgreen;
+		background-color: darkgray;
+		border-radius: 20px;
 	}
 
 	.intox-label {
