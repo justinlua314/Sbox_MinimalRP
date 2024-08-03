@@ -13,7 +13,7 @@ public sealed class PlayerWallet : Component {
 	[Property] float SalaryFrequency { get; set; }
 	[Property] int SalaryAmount { get; set; }
 
-	public int Money = 50000;
+	public int Money = 500;
 	float SalaryTimer = 0f;
 
 	protected override void OnFixedUpdate() {
